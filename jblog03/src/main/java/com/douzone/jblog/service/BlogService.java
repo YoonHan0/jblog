@@ -21,9 +21,13 @@ public class BlogService {
 		
 		blogVo.setId(vo.getId());
 		blogVo.setTitle(vo.getName() + "님의 블로그");
-		blogVo.setProfile("");
+		blogVo.setProfile("/assets/images/spring-logo.jpg");	// 기본 이미지?
 				
 		blogRepository.insert(blogVo);
+	}
+
+	public BlogVo getBlogInfoById(String id) {
+		return blogRepository.getBlogInfoById(id);
 	}
 
 	

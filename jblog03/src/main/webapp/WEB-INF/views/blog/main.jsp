@@ -12,7 +12,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
+			<h1>${authUser.name }님의 이야기</h1>
 			<ul>
 				<c:choose>
 					<c:when test='${empty authUser }'>
@@ -36,18 +36,16 @@
 					<p>
 				</div>
 				<ul class="blog-list">			<!-- post. title, reg_date -->
-				
 					<c:forEach items='${postList }' var='post' varStatus='status'>
-						<li><a href="">${post.title }</a> <span>${post.regDate }</span>	</li>	
+						<li><a href="${pageContext.request.contextPath}/blog/main?no=${category.no }&postNo=${post.no }">${post.title }</a> <span>${post.regDate }</span>	</li>	
 					</c:forEach>
-					
 				</ul>
 			</div>
 		</div>
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+				<img src="${pageContext.request.contextPath}${blogVo.profile }">
 			</div>
 		</div>
 
@@ -55,7 +53,7 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach items='${categoryList }' var='category' varStatus='status'>
-					<li><a href="">${category.name }</a></li>
+					<li><a href="${pageContext.request.contextPath}/blog/main?no=${category.no }&postNo=">${category.name }</a></li>
 				</c:forEach>
 				
 			</ul>

@@ -22,6 +22,10 @@ public class BlogRepository {
 		
 	}
 
+	public BlogVo getBlogInfoById(String id) {
+		return sqlSession.selectOne("blog.getBlogInfo", id);
+	}
+
 	
 
 }

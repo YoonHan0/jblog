@@ -24,6 +24,10 @@ public class PostRepository {
 		return sqlSession.selectOne("post.getRecentlyPost", no);
 	}
 
+	public PostVo getPostByNo(Long postNo) {
+		return sqlSession.selectOne("post.getPostByNo", postNo);
+	}
+
 	
 	
 }

@@ -24,6 +24,15 @@
 	
 	</select>
 	
+	<select id="getPostByNo" parameterType="long" resultType="postvo">
+		<![CDATA[
+			SELECT title, contents, reg_date AS regDate
+			FROM post
+			WHERE no = #{no };
+		]]>
+	
+	</select>
+	
 </mapper>
 
 

@@ -14,7 +14,7 @@
 	<div class="center-content">
 		<h1 class="logo">JBlog</h1>
 		<ul class="menu">
-			<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>	<!-- 여기에 뒤로가기, 회원가입만 넣고싶은데.. -->
 			<li><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
 			<li><a href="${pageContext.request.contextPath}">로그아웃</a></li>
 			<li><a href="${pageContext.request.contextPath}/blog/main">내블로그</a></li>
