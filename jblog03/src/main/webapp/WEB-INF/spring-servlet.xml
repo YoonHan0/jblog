@@ -22,10 +22,51 @@
 		messageConverter,
 		argumentResolver 를 등록
 	-->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+		<mvc:argument-resolvers>
+			<bean class="com.douzone.jblog.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
 
 	<!-- Default Servlet Handler -->
 	<mvc:default-servlet-handler />
+	
+	<!-- Inteceptors -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/login"/>
+			<bean class="com.douzone.jblog.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout"/>
+			<bean class="com.douzone.jblog.interceptor.LogoutInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/blog/main"/>
+			<bean class="com.douzone.jblog.interceptor.BlogMainInterceptor" />
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
 	
 	<!-- ViewResolver -->
 	<bean id="viewResolver"
@@ -47,7 +88,7 @@
 	</bean>
 
 	<!-- mvc url-resource mapping -->
-	<mvc:resources mapping="/assets/upload-images/**" location="file:/jblog-uploads/" />
+	<mvc:resources mapping="/assets/upload-images/**" location="file:/Users/yoon/jblog-uploads/" />
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.douzone.jblog.controller" />

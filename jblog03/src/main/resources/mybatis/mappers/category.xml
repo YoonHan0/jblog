@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+
+
+	<insert id="insert" parameterType="categoryvo"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+		<![CDATA[	
+			INSERT INTO category
+			VALUES(null, #{name }, #{id })
+		]]>
+	</insert>
+	
+	<select id="categoryListById" parameterType="string" resultType="categoryvo"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+		<![CDATA[	
+			SELECT no, name
+			FROM category
+			WHERE id = #{id };
+		]]>
+	</select>
+	 
+	<select id="getRecentlyCategoryList" parameterType="string" resultType="long"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+		<![CDATA[	
+			SELECT no
+			FROM category
+			WHERE id = #{id }
+			ORDER BY no ASC
+			LIMIT 0,1;
+		]]>
+	</select>
+	
+</mapper>
+
+
