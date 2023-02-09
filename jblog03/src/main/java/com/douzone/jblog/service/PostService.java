@@ -40,8 +40,8 @@ public class PostService {
 		return vo;
 	}
 
-	public PostVo getPostByNo(Long postNo) {
-		return postRepository.getPostByNo(postNo);
+	public PostVo getPostByNo(Long postNo, Long categoryNo) {
+		return postRepository.getPostByNo(postNo, categoryNo);
 	}
 
 }

@@ -61,10 +61,6 @@
 			<bean class="com.douzone.jblog.interceptor.LogoutInterceptor" />
 		</mvc:interceptor>
 		
-		<mvc:interceptor>
-			<mvc:mapping path="/blog/main"/>
-			<bean class="com.douzone.jblog.interceptor.BlogMainInterceptor" />
-		</mvc:interceptor>
 		
 	</mvc:interceptors>
 	

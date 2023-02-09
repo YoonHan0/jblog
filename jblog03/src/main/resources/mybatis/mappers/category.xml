@@ -10,15 +10,16 @@
 		]]>
 	</insert>
 	
-	<select id="categoryListById" parameterType="string" resultType="categoryvo"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+	<select id="categoryListById" parameterType="string" resultType="categoryvo"> 
 		<![CDATA[	
 			SELECT no, name
 			FROM category
-			WHERE id = #{id };
+			WHERE id = #{id }
+			ORDER BY no ASC;
 		]]>
 	</select>
 	 
-	<select id="getRecentlyCategoryList" parameterType="string" resultType="long"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+	<select id="getRecentlyCategoryList" parameterType="string" resultType="long"> 
 		<![CDATA[	
 			SELECT no
 			FROM category
