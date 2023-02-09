@@ -30,6 +30,11 @@ public class BlogService {
 		return blogRepository.getBlogInfoById(id);
 	}
 
+	public void updateBlogInfo(BlogVo blogVo) {
+		blogRepository.update(blogVo);
+		
+	}
+
 	
 
 }

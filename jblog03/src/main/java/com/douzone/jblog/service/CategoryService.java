@@ -32,4 +32,9 @@ public class CategoryService {
 		return categoryRepository.getRecentlyCategoryList(id);
 	}
 
+	public List<CategoryVo> categoryListWithPostNo(String id) {
+		
+		return categoryRepository.getListWithPostNo(id);
+	}
+
 }

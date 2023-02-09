@@ -11,22 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1>${blogvo.id }님의 이야기</h1>
-			<ul>
-				<c:choose>
-					<c:when test='${empty authUser }'>
-						<li><a href="">로그인</a></li>	
-					</c:when>
-					
-					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-						<li><a href="">블로그 관리</a></li>	
-					</c:otherwise>
-				</c:choose>
-				
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">

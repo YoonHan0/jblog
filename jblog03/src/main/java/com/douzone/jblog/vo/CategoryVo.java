@@ -5,6 +5,14 @@ public class CategoryVo {
 	private Long no;
 	private String name;
 	private String id;
+	private int postingNo;
+	
+	public int getPostingNo() {
+		return postingNo;
+	}
+	public void setPostingNo(int postingNo) {
+		this.postingNo = postingNo;
+	}
 	public Long getNo() {
 		return no;
 	}

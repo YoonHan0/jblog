@@ -12,8 +12,10 @@
 	
 	<select id="categoryListById" parameterType="string" resultType="categoryvo"> 
 		<![CDATA[	
-			SELECT no, name
-			FROM category
+			SELECT no, id, name, (SELECT count(*)
+									FROM post
+									WHERE category_no = c.no) AS postingNo
+			FROM category c
 			WHERE id = #{id }
 			ORDER BY no ASC;
 		]]>
@@ -28,6 +30,7 @@
 			LIMIT 0,1;
 		]]>
 	</select>
+	
 	
 </mapper>
 

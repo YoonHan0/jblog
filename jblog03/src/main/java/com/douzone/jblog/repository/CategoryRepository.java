@@ -30,4 +30,9 @@ public class CategoryRepository {
 		return sqlSession.selectOne("category.getRecentlyCategoryList", id);
 	}
 
+
+	public List<CategoryVo> getListWithPostNo(String id) {			// no, name, id, posting Count
+		return sqlSession.selectList("category.getListWithPostNo", id);
+	}
+
 }

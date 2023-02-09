@@ -15,7 +15,15 @@
 			FROM blog
 			WHERE id = #{id };
 		]]>
-	</select> 
+	</select>
+	
+	<update id="update" parameterType="blogvo"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+		<![CDATA[	
+			UPDATE blog
+			SET title = #{title }, profile = #{profile }
+			WHERE id = #{id }
+		]]>
+	</update>  
 	
 </mapper>
 
