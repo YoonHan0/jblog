@@ -106,36 +106,70 @@ public class BlogController {
 	public String adminCategory(Model model, @PathVariable("id") String id) {
 		
 		BlogVo blogvo = blogService.getBlogInfoById(id);
-		model.addAttribute("blogvo", blogvo);		// id, title, profile
-		
 		// 카테고리 no, name, id, (PostVo)
 		List<CategoryVo> categoryList = categoryService.getCategoryList(id);		//카테고리 리스트 받아오기
+		model.addAttribute("blogvo", blogvo);		// id, title, profile
+		model.addAttribute("categoryList", categoryList);	
 		
-		model.addAttribute("categoryList", categoryList);		
 		return "blog/admin-category";
 	}
 	
-	/*===== 여기 =======*/
+	
 	@RequestMapping(value = "/admin/category", method=RequestMethod.POST)
-	public String adminCategory(Model model, @PathVariable("id") String id, CategoryVo vo) {
+	public String adminCategory(Model model, @PathVariable("id") String id, CategoryVo vo) {	// vo = name
+		
+		vo.setId(id);
+		categoryService.addCategoryList(vo);
 		
 		BlogVo blogvo = blogService.getBlogInfoById(id);
-		model.addAttribute("blogvo", blogvo);		// id, title, profile
-		
 		// 카테고리 no, name, id, (PostVo)
-		List<CategoryVo> categoryList = categoryService.getCategoryList(id);		//카테고리 리스트 받아오기
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
 		
-		model.addAttribute("categoryList", categoryList);		
+		model.addAttribute("blogvo", blogvo);		// id, title, profile
+		model.addAttribute("categoryList", categoryList);
+		
 		return "blog/admin-category";
 	}
 	
+	@RequestMapping("/admin/delete")		// 카테고리 리스트 삭제하고 다시 출력
+	public String adminDelete(Model model, @PathVariable("id") String id, Long no) {
+		
+		categoryService.delete(no);
+		
+		BlogVo blogvo = blogService.getBlogInfoById(id);
+		// 카테고리 no, name, id, (PostVo)
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
+		
+		model.addAttribute("blogvo", blogvo);		// id, title, profile
+		model.addAttribute("categoryList", categoryList);
+		
+		return "blog/admin-category";
+	}
 	
-	@RequestMapping("/admin/write")
+	@RequestMapping(value = "/admin/write", method=RequestMethod.GET)
 	public String adminWrite(Model model, @PathVariable("id") String id) {
 		
 		BlogVo blogvo = blogService.getBlogInfoById(id);
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
+		
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("blogvo", blogvo);
 		
 		return "blog/admin-write";
+	}
+	
+	@RequestMapping(value = "/admin/write", method=RequestMethod.POST)		
+	// PostVo로 값(title, contents)
+	public String adminWrite(Model model, @PathVariable("id") String id, PostVo postVo, 
+							@RequestParam("category") Long categoryNo) {
+		
+		postVo.setCategoryNo(categoryNo);
+		postService.insert(postVo);
+		
+		PostVo vo = postService.getRecentlyPost(categoryNo);	// 가장 최근 post
+		
+		
+		
+		return "redirect:/" + id + "?categoryNo=" + categoryNo + "&postNo=" + vo.getNo();		// optional하면 될거임
 	}
 }

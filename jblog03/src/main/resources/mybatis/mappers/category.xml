@@ -10,6 +10,8 @@
 		]]>
 	</insert>
 	
+
+	
 	<select id="categoryListById" parameterType="string" resultType="categoryvo"> 
 		<![CDATA[	
 			SELECT no, id, name, (SELECT count(*)
@@ -30,6 +32,14 @@
 			LIMIT 0,1;
 		]]>
 	</select>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM category
+			WHERE no = #{no };
+		]]>
+	</delete>
 	
 	
 </mapper>

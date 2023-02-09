@@ -8,17 +8,18 @@
 		<![CDATA[
 			SELECT no, title, contents, reg_date AS regDate, category_no AS categoryNo
 			FROM post
-			WHERE category_no = #{no };
+			WHERE category_no = #{no }
+			ORDER BY reg_date DESC;
 		]]>
 	
 	</select>
 	
 	<select id="getRecentlyPost" parameterType="long" resultType="postvo">			<!-- 초기값으로 출력하기 위해 리턴 -->
 		<![CDATA[
-			SELECT title, contents, reg_date AS regDate
+			SELECT no, title, contents, reg_date AS regDate
 			FROM post
 			WHERE category_no = #{no }
-			ORDER BY reg_date ASC
+			ORDER BY reg_date DESC
 			LIMIT 0,1;
 		]]>
 	
@@ -32,6 +33,13 @@
 		]]>
 	
 	</select>
+	
+	<insert id="insert" parameterType="postvo">
+		<![CDATA[
+			INSERT INTO post 
+			VALUES(null, #{title }, #{contents }, now(), #{categoryNo })
+		]]>
+	</insert>
 	
 </mapper>
 

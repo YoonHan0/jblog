@@ -23,7 +23,11 @@ public class CategoryService {
 		
 		categoryRepository.insert(categoryvo);
 	}
-
+	
+	public void addCategoryList(CategoryVo vo) {			// 카테고리명 입력 시 추가되는 함수
+		categoryRepository.insert(vo);
+	}
+	
 	public List<CategoryVo> getCategoryList(String id) {
 		return categoryRepository.getCategoryList(id);
 	}
@@ -36,5 +40,10 @@ public class CategoryService {
 		
 		return categoryRepository.getListWithPostNo(id);
 	}
+
+	public void delete(Long no) {
+		categoryRepository.delete(no);
+	}
+
 
 }

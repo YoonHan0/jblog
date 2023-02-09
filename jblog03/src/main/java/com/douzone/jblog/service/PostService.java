@@ -44,4 +44,8 @@ public class PostService {
 		return postRepository.getPostByNo(postNo, categoryNo);
 	}
 
+	public void insert(PostVo postVo) {
+		postRepository.insert(postVo);
+	}
+
 }

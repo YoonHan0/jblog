@@ -35,4 +35,11 @@ public class CategoryRepository {
 		return sqlSession.selectList("category.getListWithPostNo", id);
 	}
 
+
+	public void delete(Long no) {			// 리스트 삭제
+		sqlSession.delete("category.delete", no);
+	}
+
+
+
 }

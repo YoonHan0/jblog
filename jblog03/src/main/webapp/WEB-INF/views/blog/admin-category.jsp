@@ -31,7 +31,7 @@
 							<td>${status.index + 1 }</td>
 							<td>${vo.name }</td>
 							<td>${vo.postingNo }</td>
-							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+							<td><a href="${pageContext.request.contextPath}/${blogvo.id }/admin/delete?no=${vo.no }"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
 						</tr>
 		      		</c:forEach>
 					  
@@ -39,7 +39,8 @@
 				</table>
       	
       			<h4 class="n-c">새로운 카테고리 추가</h4>
-      			<form method="post" action="${pageContext.request.contextPath}/admin/category">
+      			<form method="post" action="${pageContext.request.contextPath}/${blogvo.id }/admin/category">
+      				<input type="hidden" value="${blogvo.id }">
 	      			<table id="admin-cat-add">
 			      		<tr>
 			      			<td class="t">카테고리명</td>
