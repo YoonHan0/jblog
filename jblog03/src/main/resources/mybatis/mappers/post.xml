@@ -9,7 +9,7 @@
 			SELECT no, title, contents, reg_date AS regDate, category_no AS categoryNo
 			FROM post
 			WHERE category_no = #{no }
-			ORDER BY reg_date DESC;
+			ORDER BY reg_date DESC
 		]]>
 	
 	</select>
@@ -20,7 +20,7 @@
 			FROM post
 			WHERE category_no = #{no }
 			ORDER BY reg_date DESC
-			LIMIT 0,1;
+			LIMIT 0,1
 		]]>
 	
 	</select>
@@ -29,7 +29,7 @@
 		<![CDATA[
 			SELECT no, title, contents, reg_date AS regDate, category_no AS categoryNo
 			FROM post
-			WHERE no = #{postNo } AND category_no = #{categoryNo };
+			WHERE no = #{postNo } AND category_no = #{categoryNo }
 		]]>
 	
 	</select>
@@ -40,6 +40,14 @@
 			VALUES(null, #{title }, #{contents }, now(), #{categoryNo })
 		]]>
 	</insert>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM post
+			WHERE category_no = #{no }
+		]]>
+	</delete>
 	
 </mapper>
 

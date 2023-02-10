@@ -21,7 +21,7 @@
 		</ul>
 		<form class="login-form">
       		<label>아이디</label> <input type="text" name="id" value='${id }'>
-      		<label>패스워드</label> <input type="text" name="password">
+      		<label>패스워드</label> <input type="password" name="password">
       		
       		<c:if test='${not empty id }'>
       			<p>올바르지 않는 아이디 또는 비밀번호입니다.</p>

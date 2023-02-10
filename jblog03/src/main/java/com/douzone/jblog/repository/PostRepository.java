@@ -39,6 +39,11 @@ public class PostRepository {
 		
 	}
 
+	public void delete(Long no) {
+		sqlSession.delete("post.delete", no);
+		
+	}
+
 	
 	
 }

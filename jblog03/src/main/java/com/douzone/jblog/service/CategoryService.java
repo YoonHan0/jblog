@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douzone.jblog.repository.CategoryRepository;
+import com.douzone.jblog.repository.PostRepository;
 import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.UserVo;
 
@@ -14,6 +15,9 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private PostRepository postRepository;
 	
 	public void join(UserVo vo) {
 		CategoryVo categoryvo = new CategoryVo();
@@ -42,7 +46,8 @@ public class CategoryService {
 	}
 
 	public void delete(Long no) {
-		categoryRepository.delete(no);
+		postRepository.delete(no);			// 삭제하려는 카테고리에 있는 글 먼저 모두 삭제하고
+		categoryRepository.delete(no);		// 그 다음에 카테고리 삭제
 	}
 
 

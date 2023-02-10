@@ -131,26 +131,18 @@ public class BlogController {
 		return "blog/admin-category";
 	}
 	
-	@RequestMapping("/admin/delete")		// 카테고리 리스트 삭제하고 다시 출력
+	@RequestMapping("/admin/delete")		// 카테고리 리스트 삭제 redirect!
 	public String adminDelete(Model model, @PathVariable("id") String id, Long no) {
 		
-		categoryService.delete(no);
-		
-		BlogVo blogvo = blogService.getBlogInfoById(id);
-		// 카테고리 no, name, id, (PostVo)
-		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
-		
-		model.addAttribute("blogvo", blogvo);		// id, title, profile
-		model.addAttribute("categoryList", categoryList);
-		
-		return "blog/admin-category";
+		categoryService.delete(no);		
+		return "redirect:/" + id + "/admin/category";
 	}
 	
 	@RequestMapping(value = "/admin/write", method=RequestMethod.GET)
 	public String adminWrite(Model model, @PathVariable("id") String id) {
 		
-		BlogVo blogvo = blogService.getBlogInfoById(id);
-		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
+		BlogVo blogvo = blogService.getBlogInfoById(id);		//blog id, title, profile
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id); // category no, id, name, postingNo
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("blogvo", blogvo);
@@ -163,7 +155,8 @@ public class BlogController {
 	public String adminWrite(Model model, @PathVariable("id") String id, PostVo postVo, 
 							@RequestParam("category") Long categoryNo) {
 		
-		postVo.setCategoryNo(categoryNo);
+		postVo.setCategoryNo(categoryNo);		// 글 작성하면서 선택한 카테고리의 no값 set
+
 		postService.insert(postVo);
 		
 		PostVo vo = postService.getRecentlyPost(categoryNo);	// 가장 최근 post
