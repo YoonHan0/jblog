@@ -1,7 +1,12 @@
 package com.douzone.jblog.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,12 +29,17 @@ public class UserController {
 	private CategoryService categoryService;
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String join() {			// 회원가입 화면으로 이동만
+	public String join(@ModelAttribute UserVo vo) {			// 회원가입 화면으로 이동만
 		return "/user/join";
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join(UserVo vo) {			
+	public String join(@ModelAttribute @Valid UserVo vo, BindingResult result, Model model) {
+				
+		if(result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
+			return "user/join";
+		}
 		userService.join(vo);
 		blogService.join(vo);
 		categoryService.join(vo);
