@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+
+
+	<insert id="insert" parameterType="categoryvo"> <!-- typeAlias로 com.douzone.mysite.vo.UserVo -> uservo -->
+		<![CDATA[	
+			INSERT INTO category
+			VALUES(null, #{name }, #{id })
+		]]>
+	</insert>
+	
+
+	
+	<select id="categoryListById" parameterType="string" resultType="categoryvo"> 
+		<![CDATA[	
+			SELECT no, id, name, (SELECT count(*)
+									FROM post
+									WHERE category_no = c.no) AS postingNo
+			FROM category c
+			WHERE id = #{id }
+			ORDER BY no ASC;
+		]]>
+	</select>
+	 
+	<select id="getRecentlyCategoryList" parameterType="string" resultType="long"> 
+		<![CDATA[	
+			SELECT no
+			FROM category
+			WHERE id = #{id }
+			ORDER BY no ASC
+			LIMIT 0,1;
+		]]>
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM category
+			WHERE no = #{no };
+		]]>
+	</delete>
+	
+	
+</mapper>
+
+
