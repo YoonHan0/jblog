@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	
+	
+	<select id="getPostList" parameterType="long" resultType="postvo">				<!-- 해당 카테고리의 포스트 리스트를 리턴 -->
+		<![CDATA[
+			SELECT no, title, contents, reg_date AS regDate, category_no AS categoryNo
+			FROM post
+			WHERE category_no = #{no }
+			ORDER BY reg_date DESC
+		]]>
+	
+	</select>
+	
+	<select id="getRecentlyPost" parameterType="long" resultType="postvo">			<!-- 초기값으로 출력하기 위해 리턴 -->
+		<![CDATA[
+			SELECT no, title, contents, reg_date AS regDate
+			FROM post
+			WHERE category_no = #{no }
+			ORDER BY reg_date DESC
+			LIMIT 0,1
+		]]>
+	
+	</select>
+	
+	<select id="getPostByNo" parameterType="map" resultType="postvo">		<!-- Post의 no값으로 blog/main에 출력시킬 값을 리턴 -->
+		<![CDATA[
+			SELECT no, title, contents, reg_date AS regDate, category_no AS categoryNo
+			FROM post
+			WHERE no = #{postNo } AND category_no = #{categoryNo }
+		]]>
+	
+	</select>
+	
+	<insert id="insert" parameterType="postvo">
+		<![CDATA[
+			INSERT INTO post 
+			VALUES(null, #{title }, #{contents }, now(), #{categoryNo })
+		]]>
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			DELETE
+			FROM post
+			WHERE category_no = #{no }
+		]]>
+	</delete>
+	
+</mapper>
+
+
