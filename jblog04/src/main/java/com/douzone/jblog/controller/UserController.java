@@ -62,4 +62,13 @@ public class UserController {
 	}
 	
 	
+//	@RequestMapping("/auth")		
+//	public void auth() {				
+//	}
+//	
+//	@RequestMapping("/logout")		
+//	public void logoutDefault() {		
+//	}
+	
+	
 }
