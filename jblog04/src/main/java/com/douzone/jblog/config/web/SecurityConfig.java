@@ -50,7 +50,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry
 			.addInterceptor(loginInterceptor())
-			.addPathPatterns("/user/auth");
+			.addPathPatterns("/user/login");
 		
 		registry
 			.addInterceptor(logoutInterceptor())
@@ -59,6 +59,6 @@ public class SecurityConfig implements WebMvcConfigurer {
 		registry
 			.addInterceptor(authInterceptor())
 			.addPathPatterns("/**")
-			.excludePathPatterns("/user/auth", "/user/logout", "/assets/**");
+			.excludePathPatterns("/user/login", "/user/logout", "/assets/**");
 	}
 }

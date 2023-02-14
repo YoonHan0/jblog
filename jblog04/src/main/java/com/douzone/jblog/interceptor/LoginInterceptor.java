@@ -28,6 +28,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		UserVo authUser = userService.getUser(vo);		// id, password
 		
+		System.out.println("LoginInterceptor 입장!");
+		
 		if(authUser == null) {		// 올바르지 않는 아이디 비번
 			request.setAttribute("id", vo.getId());	
 			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);

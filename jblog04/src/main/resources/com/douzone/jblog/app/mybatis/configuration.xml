@@ -15,10 +15,10 @@
    	</typeAliases>	
    	
 	<mappers>
-		<mapper resource="mybatis/mappers/user.xml" />
-		<mapper resource="mybatis/mappers/blog.xml" />
-		<mapper resource="mybatis/mappers/category.xml" />
-		<mapper resource="mybatis/mappers/post.xml" />
+		<mapper resource="com/douzone/jblog/app/mybatis/mappers/user.xml" />
+		<mapper resource="com/douzone/jblog/app/mybatis/mappers/blog.xml" />
+		<mapper resource="com/douzone/jblog/app/mybatis/mappers/category.xml" />
+		<mapper resource="com/douzone/jblog/app/mybatis/mappers/post.xml" />
 	</mappers>
 </configuration>
 <!-- settings/setting-nam="mapUnderscoreToCamelCase" : reg_date를 regDate처럼 카멜 형식으로 변경해주는 것 -->

@@ -47,35 +47,33 @@ public class MvcConfig implements WebMvcConfigurer {
 		);
 		
 		return messageConverter;
+	}	
+	
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+			.indentOutput(true)
+			.dateFormat(new SimpleDateFormat("yyyy-mm-dd"));
+		
+		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(builder.build());
+		messageConverter.setSupportedMediaTypes(
+			Arrays.asList(
+				new MediaType("application", "json", Charset.forName("utf-8"))
+			)
+		);
+		
+		return messageConverter;
 	}
-	
-						/*=========== 이 아래 친구들은 잘 모르겠음 ===========*/
-	
-//	@Bean
-//	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-//		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
-//			.indentOutput(true)
-//			.dateFormat(new SimpleDateFormat("yyyy-mm-dd"));
-//		
-//		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(builder.build());
-//		messageConverter.setSupportedMediaTypes(
-//			Arrays.asList(
-//				new MediaType("application", "json", Charset.forName("utf-8"))
-//			)
-//		);
-//		
-//		return messageConverter;
-//	}
-//
-//	@Override
-//	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//		converters.add(stringHttpMessageConverter());
-//		converters.add(mappingJackson2HttpMessageConverter());
-//	}
-//
-//	// Default Servlet Handler
-//	@Override
-//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//		configurer.enable();
-//	}
+
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(stringHttpMessageConverter());
+		converters.add(mappingJackson2HttpMessageConverter());
+	}
+
+	// Default Servlet Handler
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 }

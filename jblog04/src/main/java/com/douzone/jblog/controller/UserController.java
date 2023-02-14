@@ -63,11 +63,13 @@ public class UserController {
 	
 	
 //	@RequestMapping("/auth")		
-//	public void auth() {				
+//	public void auth() {
+//		System.out.println("UserController auth() 입장!");
 //	}
 //	
 //	@RequestMapping("/logout")		
-//	public void logoutDefault() {		
+//	public void logout() {
+//		System.out.println("UserController logout() 입장!");
 //	}
 	
 	
