@@ -42,8 +42,11 @@ public class BlogController {
 			@PathVariable("categoryNo") Optional<Long> categoryNo, 
 			@PathVariable("postNo") Optional<Long> postNo) {
 		
-		
 		System.out.println(id + " : " + categoryNo + " : "  + postNo);
+		
+//		if(!postNo.get().getClass().equals(Long.class) || !categoryNo.get().getClass().equals(Long.class)) {
+//			return "redirect:/";
+//		}
 		
 		Long categoryno = 0L;
 		Long postno = 0L;
@@ -77,6 +80,7 @@ public class BlogController {
 		model.addAttribute("postList", postList);
 		
 		return "blog/main";
+
 	}
 	@Auth
 	@RequestMapping("/admin/basic")

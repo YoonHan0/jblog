@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Length;
 public class UserVo {
 	
 	@NotEmpty
-	@Length(min=2, max=8)
 	private String id;
 	
 	@NotEmpty
