@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.douzone</groupId>
-	<artifactId>jblog03</artifactId>
+	<artifactId>jblog05</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<packaging>war</packaging>
