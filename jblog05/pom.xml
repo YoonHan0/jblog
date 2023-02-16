@@ -108,14 +108,9 @@
 		</dependency>
 		<!-- validation -->
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>6.2.3.Final</version>
+		   <groupId>org.hibernate.validator</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>6.2.3.Final</version>
 		</dependency>
 	</dependencies>
 	<build>
