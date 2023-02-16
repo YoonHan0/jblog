@@ -21,8 +21,9 @@ public class GlobalExceptionHandler {
 		e.printStackTrace(new PrintWriter(errors));
 		logger.error(errors.toString());
 		
-		//2. 사과페이지( 3.정상종료)
+		// +2. 여기서 처리를 해보쟈 (TypeError)
 		
+		//2. 사과페이지( 3.정상종료)
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("exception", errors.toString());
 		mav.setViewName("error/exception");
